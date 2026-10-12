@@ -6,8 +6,18 @@ const errorHandler = require('./middleware/errorHandler');
 const logger = require('./utils/logger');
 
 const app = express();
-app.use(cors());
+
+// Allow the browser to call this API from any website (including your Vercel frontend)
+const corsOptions = {
+  origin: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // answer preflight requests
+
 app.use(express.json());
+app.get('/', (req, res) => res.send('Finance Tracker API is running'));
 app.use('/api', routes);
 app.use(errorHandler); // must be last
 
