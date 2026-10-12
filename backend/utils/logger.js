@@ -2,8 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const logDir = path.join(__dirname, '..', 'logs');
-fs.mkdirSync(logDir, { recursive: true });
+const logDir = process.env.VERCEL ? '/tmp/logs' : path.join(__dirname, '..', 'logs');fs.mkdirSync(logDir, { recursive: true });
 
 function write(level, message) {
   const line = `${new Date().toISOString()} [${level}] ${message}`;
