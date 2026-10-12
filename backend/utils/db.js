@@ -2,8 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const file = path.join(__dirname, '..', 'data', 'db.json');
-fs.mkdirSync(path.dirname(file), { recursive: true });
+const file = process.env.VERCEL ? '/tmp/db.json' : path.join(__dirname, '..', 'data', 'db.json');fs.mkdirSync(path.dirname(file), { recursive: true });
 
 function load() {
   if (!fs.existsSync(file)) return { users: [], transactions: [], nextId: 1 };
