@@ -1,13 +1,15 @@
-// Tiny logger: prints to the console and saves to logs/app.log
+// Tiny logger: prints to the console and tries to save to a log file
 const fs = require('fs');
 const path = require('path');
 
-const logDir = process.env.VERCEL ? '/tmp/logs' : path.join(__dirname, '..', 'logs');fs.mkdirSync(logDir, { recursive: true });
+// Vercel only allows writing to /tmp
+const logDir = process.env.VERCEL ? '/tmp/logs' : path.join(__dirname, '..', 'logs');
+try { fs.mkdirSync(logDir, { recursive: true }); } catch {}
 
 function write(level, message) {
   const line = `${new Date().toISOString()} [${level}] ${message}`;
   console.log(line);
-  fs.appendFileSync(path.join(logDir, 'app.log'), line + '\n');
+  try { fs.appendFileSync(path.join(logDir, 'app.log'), line + '\n'); } catch {}
 }
 
 module.exports = {
