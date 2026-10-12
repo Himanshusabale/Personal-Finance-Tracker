@@ -2,7 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const file = process.env.VERCEL ? '/tmp/db.json' : path.join(__dirname, '..', 'data', 'db.json');fs.mkdirSync(path.dirname(file), { recursive: true });
+// Vercel only allows writing to /tmp
+const file = process.env.VERCEL ? '/tmp/db.json' : path.join(__dirname, '..', 'data', 'db.json');
+try { fs.mkdirSync(path.dirname(file), { recursive: true }); } catch {}
 
 function load() {
   if (!fs.existsSync(file)) return { users: [], transactions: [], nextId: 1 };
