@@ -81,3 +81,12 @@ frontend/src/
 - **Storage:** The app uses a JSON file at `backend/data/db.json` instead of SQLite, so no native database installation is needed. For a production app, replace `utils/db.js` with a database suited to your needs.
 - **Logging:** A small built-in logger writes to the console and `backend/logs/app.log`. It records logins, failed logins, and transaction creation, updates, and deletions.
 - **JavaScript:** The project uses plain JavaScript rather than TypeScript. Validators in `utils/validators.js` check incoming data.
+
+view project ss
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d63b17b2-c85e-4db2-b770-773a4c00cb88" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9044ead7-a0a6-4289-965d-793c836cc7c7" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/08f0be98-c47b-4ead-942d-52d0be89e444" />
+
+
+
