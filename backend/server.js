@@ -11,4 +11,9 @@ app.use(express.json());
 app.use('/api', routes);
 app.use(errorHandler); // must be last
 
-app.listen(PORT, () => logger.info(`Backend running on http://localhost:${PORT}`));
+// Start the server only when running locally (Vercel runs the app itself)
+if (require.main === module) {
+  app.listen(PORT, () => logger.info(`Backend running on http://localhost:${PORT}`));
+}
+
+module.exports = app;
